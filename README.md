@@ -35,7 +35,7 @@ const appCredentials = {
   client_secret: 'your_client_secret',
 };
 
-// Define yoor app credentials
+// Define your app credentials
 const appId = 'your_app_id';
 const appToken = 'your_app_token';
 
@@ -43,7 +43,7 @@ const appToken = 'your_app_token';
 const itemId = 123456;
 
 // Authenticate using app authentication
-async function authenticateAndUpdateItem(appId, appToken, itemId, fields, date, duration) {
+async function authenticateAndUpdateItem(appId, appToken, itemId) {
   try {
     // Perform app authentication
     const auth = await Podio.auth(appCredentials).appAuth(appId, appToken);
