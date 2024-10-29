@@ -1,7 +1,7 @@
 {
-  "name": "podio-api-client",
+  "name": "api-client-for-podio",
   "version": "1.0.0",
-  "description": "",
+  "description": "A robust and easy-to-use JavaScript/Node.js client for interacting with the Podio API",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
