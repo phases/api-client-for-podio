@@ -19,7 +19,7 @@ A robust and easy-to-use JavaScript/Node.js client for interacting with the Podi
 Install via npm:
 
 ```bash
-npm install api-client-for-podio
+npm i @phasesdk/api-client-for-podio
 ```
 
 ## Getting Started
