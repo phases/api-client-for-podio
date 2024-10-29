@@ -11,7 +11,24 @@
     "build": "rimraf ./lib && tsc",
     "dev": "tsc -w"
   },
-  "keywords": [],
+  "keywords": [
+    "podio",
+    "api-client",
+    "podio-api",
+    "podio-client",
+    "javascript",
+    "nodejs",
+    "rest-api",
+    "api-wrapper",
+    "integration",
+    "oauth2",
+    "crm",
+    "task-management",
+    "project-management",
+    "workflow-automation",
+    "podio-sdk",
+    "podio-integration"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
