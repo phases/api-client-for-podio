@@ -7,4 +7,4 @@ const podio = {
   api,
 };
 
-export default podio;
+export = podio;
