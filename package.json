@@ -1,6 +1,6 @@
 {
   "name": "@phasesdk/api-client-for-podio",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A robust and easy-to-use JavaScript/Node.js client for interacting with the Podio API",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

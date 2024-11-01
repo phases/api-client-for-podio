@@ -27,7 +27,7 @@ npm i @phasesdk/api-client-for-podio
 Here’s a basic example demonstrating how to authenticate using app credentials and update a Podio item:
 
 ```javascript
-import Podio from 'api-client-for-podio';
+import Podio from '@phasesdk/api-client-for-podio';
 
 // Define your account credentials
 const appCredentials = {
