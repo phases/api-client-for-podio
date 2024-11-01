@@ -1,16 +1,6 @@
 import { AuthToken } from '@customTypes/podio.type';
 import Api from './Api';
-import {
-  CreateAttribute,
-  GetEffectAttributes,
-  GetPossibleAttributes,
-  UpdateAttribute,
-  Flow as FlowType,
-  PossibleAttributes,
-} from '@customTypes/flow.type';
-import { HttpResponse } from '@customTypes/http.type';
-import { Context, ContextValue } from '../../types/context.type';
-import { promises } from 'dns';
+import { CreateAttribute, GetEffectAttributes, GetPossibleAttributes, UpdateAttribute } from '@customTypes/flow.type';
 
 export default class Flow extends Api {
   constructor(props: AuthToken) {
@@ -23,13 +13,13 @@ export default class Flow extends Api {
    * @param ref_id
    * @returns
    */
-  add(ref_type: 'app', ref_id: number, attribute: CreateAttribute): Promise<HttpResponse<FlowType>> {
+  add(ref_type: 'app', ref_id: Number, attribute: CreateAttribute) {
     const requestObj = {
       method: 'post',
       url: `/flow/${ref_type}/${ref_id}/`,
       data: attribute,
     };
-    return this._httpRequest<FlowType>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -37,12 +27,12 @@ export default class Flow extends Api {
    * @param flow_id
    * @returns
    */
-  delete(flow_id: number): Promise<HttpResponse<string>> {
+  delete(flow_id: Number) {
     const requestObj = {
       method: 'delete',
       url: `/flow/${flow_id}`,
     };
-    return this._httpRequest<string>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -51,17 +41,13 @@ export default class Flow extends Api {
    * @param ref_id
    * @returns
    */
-  getEffectAttributes(
-    ref_type: 'app',
-    ref_id: number,
-    attributes: GetEffectAttributes,
-  ): Promise<HttpResponse<ContextValue>> {
+  getEffectAttributes(ref_type: 'app', ref_id: Number, attributes: GetEffectAttributes) {
     const requestObj = {
       method: 'post',
       url: `/flow/${ref_type}/${ref_id}/effect/attributes/`,
       data: attributes,
     };
-    return this._httpRequest<ContextValue>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -69,12 +55,12 @@ export default class Flow extends Api {
    * @param flow_id
    * @returns
    */
-  get(flow_id: number): Promise<HttpResponse<FlowType>> {
+  get(flow_id: Number) {
     const requestObj = {
       method: 'get',
       url: `/flow/${flow_id}`,
     };
-    return this._httpRequest<FlowType>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -82,12 +68,12 @@ export default class Flow extends Api {
    * @param flow_id
    * @returns
    */
-  getContext(flow_id: number): Promise<HttpResponse<Context>> {
+  getContext(flow_id: Number) {
     const requestObj = {
       method: 'get',
       url: `/flow/${flow_id}/context/`,
     };
-    return this._httpRequest<Context>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -96,12 +82,12 @@ export default class Flow extends Api {
    * @param ref_id
    * @returns
    */
-  getAll(ref_type: 'app', ref_id: number): Promise<HttpResponse<FlowType[]>> {
+  getAll(ref_type: 'app', ref_id: Number) {
     const requestObj = {
       method: 'get',
       url: `/flow/${ref_type}/${ref_id}/`,
     };
-    return this._httpRequest<FlowType[]>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -111,17 +97,13 @@ export default class Flow extends Api {
    * @param attributes
    * @returns
    */
-  getPossibleAttributes(
-    ref_type: 'app',
-    ref_id: number,
-    attributes: GetPossibleAttributes,
-  ): Promise<HttpResponse<PossibleAttributes[]>> {
+  getPossibleAttributes(ref_type: 'app', ref_id: Number, attributes: GetPossibleAttributes) {
     const requestObj = {
       method: 'post',
       url: `/flow/${ref_type}/${ref_id}/attributes/`,
       data: attributes,
     };
-    return this._httpRequest<PossibleAttributes[]>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -130,12 +112,12 @@ export default class Flow extends Api {
    * @param attribute
    * @returns
    */
-  update(flow_id: number, attribute: UpdateAttribute): Promise<HttpResponse<FlowType>> {
+  update(flow_id: Number, attribute: UpdateAttribute) {
     const requestObj = {
       method: 'put',
       url: `/flow/${flow_id}`,
       data: attribute,
     };
-    return this._httpRequest<FlowType>(requestObj);
+    return this._httpRequest(requestObj);
   }
 }

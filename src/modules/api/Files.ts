@@ -1,7 +1,6 @@
 import { HttpResponse } from '../../types/http.type';
 import { AuthToken } from '../../types/podio.type';
 import { SimpleObject } from '../../types/basic.type';
-import { File as FileType, Files as FilesType } from '../../types/file.type';
 import Api from './Api';
 
 export default class Files extends Api {
@@ -19,14 +18,14 @@ export default class Files extends Api {
    * @param {SimpleObject} attributes
    * @returns {Promise<HttpResponse>}
    */
-  getAll(attributes: SimpleObject): Promise<HttpResponse<FilesType[]>> {
+  getAll(attributes: SimpleObject): Promise<HttpResponse> {
     const requestObj = {
       method: 'get',
       url: '/file',
       params: attributes,
     };
 
-    return this._httpRequest<FilesType[]>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -37,14 +36,14 @@ export default class Files extends Api {
    * @param {SimpleObject} attributes
    * @returns {Promise<HttpResponse>}
    */
-  getForApp(app_id: number, attributes: SimpleObject): Promise<HttpResponse<FilesType[]>> {
+  getForApp(app_id: Number, attributes: SimpleObject): Promise<HttpResponse> {
     const requestObj = {
       method: 'get',
       url: `/file/app/${app_id}`,
       params: attributes,
     };
 
-    return this._httpRequest<FilesType[]>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -55,14 +54,14 @@ export default class Files extends Api {
    * @param {SimpleObject} attributes
    * @returns {Promise<HttpResponse>}
    */
-  getForSpace(spaceId: number, attributes: SimpleObject): Promise<HttpResponse<FilesType[]>> {
+  getForSpace(spaceId: Number, attributes: SimpleObject): Promise<HttpResponse> {
     const requestObj = {
       method: 'get',
       url: `/file/space/${spaceId}`,
       params: attributes,
     };
 
-    return this._httpRequest<FilesType[]>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -73,12 +72,13 @@ export default class Files extends Api {
    * @param {SimpleObject} attributes
    * @returns {Promise<HttpResponse>}
    */
-  attach(file_id: number, attributes: SimpleObject): Promise<HttpResponse> {
+  attach(file_id: Number, attributes: SimpleObject): Promise<HttpResponse> {
     const requestObj = {
       method: 'post',
       url: `/file/${file_id}/attach`,
       data: attributes,
     };
+
     return this._httpRequest(requestObj);
   }
 
@@ -89,7 +89,7 @@ export default class Files extends Api {
    * @param {number} file_id
    * @returns {Promise<HttpResponse>}
    */
-  copy(file_id: number): Promise<HttpResponse> {
+  copy(file_id: Number): Promise<HttpResponse> {
     const requestObj = {
       method: 'post',
       url: `/file/${file_id}/copy`,
@@ -105,7 +105,7 @@ export default class Files extends Api {
    * @param {number} file_id
    * @returns {Promise<HttpResponse>}
    */
-  delete(file_id: number): Promise<HttpResponse> {
+  delete(file_id: Number): Promise<HttpResponse> {
     const requestObj = {
       method: 'delete',
       url: `/file/${file_id}`,
@@ -121,13 +121,13 @@ export default class Files extends Api {
    * @param {number} file_id
    * @returns {Promise<HttpResponse>}
    */
-  get(file_id: number): Promise<HttpResponse<FileType>> {
+  get(file_id: Number): Promise<HttpResponse> {
     const requestObj = {
       method: 'get',
       url: `/file/${file_id}`,
     };
 
-    return this._httpRequest<FileType>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -136,7 +136,7 @@ export default class Files extends Api {
    * @param {number} file_id
    * @returns {Promise<HttpResponse>}
    */
-  replace(file_id: number, attributes: SimpleObject): Promise<HttpResponse> {
+  replace(file_id: Number, attributes: SimpleObject): Promise<HttpResponse> {
     const requestObj = {
       method: 'post',
       url: `/file/${file_id}/replace`,
@@ -153,7 +153,7 @@ export default class Files extends Api {
    * @param {SimpleObject} attributes
    * @returns
    */
-  update(file_id: number, attributes: SimpleObject): Promise<HttpResponse> {
+  update(file_id: Number, attributes: SimpleObject): Promise<HttpResponse> {
     const requestObj = {
       method: 'put',
       url: `/file/${file_id}`,

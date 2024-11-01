@@ -1,5 +1,3 @@
-import { App } from './app.type';
-
 export interface FilterAppCalendarAttributes extends LinkedAccountCalendarAttributes {
   priority?: any;
   tasks?: Boolean;
@@ -46,39 +44,4 @@ export type UpdateAttributes = {
 export type UpdateExternalCalendarEventDurationAttributes = {
   day_delta?: Number;
   minute_delta?: Number;
-};
-
-export type Calendar = {
-  app: App;
-  busy: boolean;
-  category_text: null;
-  color: string;
-  description: null | string;
-  forged: boolean;
-  link: string;
-  location: null | string;
-  ref_id: number;
-  ref_type: string;
-  source: string;
-  status: null;
-  title: string;
-  uid: string;
-  version: number;
-  start: string;
-  start_utc: string;
-  start_date: string;
-  start_time: null | string;
-  end: string | null;
-  end_utc: string;
-  end_date: string | null;
-  end_time: null | string;
-};
-
-export type Summary = {
-  today: DaySummary;
-  upcoming: DaySummary;
-};
-export type DaySummary = {
-  events: Calendar[];
-  total: number;
 };

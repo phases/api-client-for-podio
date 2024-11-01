@@ -1,7 +1,5 @@
 import { AuthToken } from '@customTypes/podio.type';
 import Api from './Api';
-import { HttpResponse } from '@customTypes/http.type';
-import { Device as DeviceType } from '../../types/device.type';
 
 export default class Device extends Api {
   constructor(props: AuthToken) {
@@ -13,11 +11,11 @@ export default class Device extends Api {
    * @param app_id
    * @returns
    */
-  install(app_id: Number): Promise<HttpResponse<DeviceType>> {
+  install(app_id: Number) {
     const requestObj = {
       method: 'post',
       url: `/mobile/install_app/${app_id}`,
     };
-    return this._httpRequest<DeviceType>(requestObj);
+    return this._httpRequest(requestObj);
   }
 }

@@ -1,11 +1,5 @@
 import { AuthToken } from '../../types/podio.type';
 import Api from './Api';
-import { HttpResponse } from '../../types/http.type';
-import { Contact as ContactType, CreateContact } from '../../types/contact.type';
-import { ContactTotal } from '../../types/contact-total.type';
-import { ContactTotalsForSpace } from '../../types/contact-total-space.type';
-import { Object } from '../../types/basic.type';
-
 
 export default class Contact extends Api {
   constructor(props: AuthToken) {
@@ -18,13 +12,13 @@ export default class Contact extends Api {
    * @param attributes
    * @returns
    */
-  create(space_id: number, attributes: Object): Promise<HttpResponse<CreateContact>> {
+  create(space_id: Number, attributes: any) {
     const requestObj = {
       method: 'post',
       url: `/contact/space/${space_id}/`,
       data: attributes,
     };
-    return this._httpRequest<CreateContact>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -33,24 +27,24 @@ export default class Contact extends Api {
    * @param profile_ids
    * @returns
    */
-  delete(profile_ids: number | string): Promise<HttpResponse<string>> {
+  delete(profile_ids: Number | string) {
     const requestObj = {
       method: 'delete',
       url: `/contact/${profile_ids}`,
     };
-    return this._httpRequest<string>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
    * Returns the total number of contacts for the active user.
    * @returns
    */
-  getTotals(): Promise<HttpResponse<ContactTotal>> {
+  getTotals() {
     const requestObj = {
       method: 'get',
       url: `/contact/totals/v3/`,
     };
-    return this._httpRequest<ContactTotal>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -60,13 +54,13 @@ export default class Contact extends Api {
    * @param attributes
    * @returns
    */
-  get(profile_ids: number | string, attributes: any = {}): Promise<HttpResponse<ContactType>> {
+  get(profile_ids: Number | string, attributes: any = {}) {
     const requestObj = {
       method: 'get',
       url: `/contact/${profile_ids}/v2`,
       params: attributes,
     };
-    return this._httpRequest<ContactType>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -74,13 +68,13 @@ export default class Contact extends Api {
    * @param attributes
    * @returns
    */
-  getAll(attributes: any = {}): Promise<HttpResponse<ContactType[]>> {
+  getAll(attributes: any = {}) {
     const requestObj = {
       method: 'get',
       url: `/contact/`,
       params: attributes,
     };
-    return this._httpRequest<ContactType[]>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -88,7 +82,7 @@ export default class Contact extends Api {
    * @param linked_account_id
    * @returns
    */
-  getLinkedAccount(linked_account_id: number) {
+  getLinkedAccount(linked_account_id: Number) {
     const requestObj = {
       method: 'post',
       url: `/contact/linked_account/${linked_account_id}`,
@@ -102,7 +96,7 @@ export default class Contact extends Api {
    * @param attributes
    * @returns
    */
-  getLinkedAccounts(linked_account_id: number, attributes: any = {}) {
+  getLinkedAccounts(linked_account_id: Number, attributes: any = {}) {
     const requestObj = {
       method: 'get',
       url: `/contact/linked_account/${linked_account_id}`,
@@ -117,13 +111,13 @@ export default class Contact extends Api {
    * @param attributes
    * @returns
    */
-  getForOrg(org_id: number, attributes: any = {}): Promise<HttpResponse<ContactType[]>> {
+  getForOrg(org_id: Number, attributes: any = {}) {
     const requestObj = {
       method: 'get',
       url: `/contact/org/${org_id}`,
       params: attributes,
     };
-    return this._httpRequest<ContactType[]>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -131,13 +125,13 @@ export default class Contact extends Api {
    * @param attributes
    * @returns
    */
-  getSkills(attributes: any = {}): Promise<HttpResponse<String[]>> {
+  getSkills(attributes: any = {}) {
     const requestObj = {
       method: 'get',
       url: `/contact/skill/`,
       params: attributes,
     };
-    return this._httpRequest<String[]>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -145,12 +139,12 @@ export default class Contact extends Api {
    * @param space_id
    * @returns
    */
-  getTotalsForSpace(space_id: number): Promise<HttpResponse<ContactTotalsForSpace>> {
+  getTotalsForSpace(space_id: Number) {
     const requestObj = {
       method: 'get',
       url: `/contact/space/${space_id}/totals/space`,
     };
-    return this._httpRequest<ContactTotalsForSpace>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -158,12 +152,12 @@ export default class Contact extends Api {
    * @param user_id
    * @returns
    */
-  getForUser(user_id: number): Promise<HttpResponse<ContactType>> {
+  getForUser(user_id: Number) {
     const requestObj = {
       method: 'get',
       url: `/contact/user/${user_id}`,
     };
-    return this._httpRequest<ContactType>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -173,12 +167,12 @@ export default class Contact extends Api {
    * @param key
    * @returns
    */
-  getFieldForUser(user_id: number, key: string): Promise<HttpResponse<ContactType>> {
+  getFieldForUser(user_id: Number, key: string) {
     const requestObj = {
       method: 'get',
       url: `/contact/user/${user_id}/${key}`,
     };
-    return this._httpRequest<ContactType>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -186,12 +180,12 @@ export default class Contact extends Api {
    * @param profile_id
    * @returns
    */
-  vCard(profile_id: number): Promise<HttpResponse<String>> {
+  vCard(profile_id: Number) {
     const requestObj = {
       method: 'get',
       url: `/contact/${profile_id}/vcard`,
     };
-    return this._httpRequest<String>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -200,12 +194,12 @@ export default class Contact extends Api {
    * @param attributes
    * @returns
    */
-  update(profile_id: number, attributes:Object): Promise<HttpResponse<string>> {
+  update(profile_id: Number, attributes: any = {}) {
     const requestObj = {
       method: 'put',
       url: `/contact/${profile_id}`,
       data: attributes,
     };
-    return this._httpRequest<string>(requestObj);
+    return this._httpRequest(requestObj);
   }
 }

@@ -9,25 +9,3 @@ export interface UpdateAppEmailAttributes {
 export type ExportRefContactToLinkedAccountAttributes = {
   linked_account_id: Number;
 };
-
-export type Email = {
-  name: String;
-  mail: string;
-};
-
-export type EmailConfiguration = {
-  attachments: boolean;
-  field_options: FieldOptions;
-  mappings: mappings;
-};
-
-export type FieldOptions = {
-  [key: string]: string[];
-};
-export type mappings = {
-  [key: string]: string;
-};
-
-export type EmailLinkedAccount = {
-  linked_account_id: string | number;
-};

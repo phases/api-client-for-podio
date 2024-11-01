@@ -1,7 +1,6 @@
 import { AuthToken } from '@customTypes/podio.type';
 import Api from './Api';
 import {
-  Calendar as CalendarType,
   AppCalendarAttributes,
   FilterAppCalendarAttributes,
   GlobalCalendarAttributes,
@@ -11,9 +10,7 @@ import {
   SummaryAttributes,
   UpdateAttributes,
   UpdateExternalCalendarEventDurationAttributes,
-  Summary,
 } from '@customTypes/calendar.type';
-import { HttpResponse } from '@customTypes/http.type';
 
 export default class Calendar extends Api {
   constructor(props: AuthToken) {
@@ -21,35 +18,33 @@ export default class Calendar extends Api {
   }
 
   /**
-   * @see https://developers.podio.com/doc/calendar/filter-app-calendar-198354260
    * Returns the calendar for the given app filtered using the item filters.
-   * @param {number}app_id
-   * @param {FilterAppCalendarAttributes}attributes
+   * @param app_id
+   * @param attributes
    * @returns
    */
-  filterAppCalendar(app_id: number, attributes: FilterAppCalendarAttributes): Promise<HttpResponse<CalendarType>> {
+  filterAppCalendar(app_id: Number, attributes: FilterAppCalendarAttributes) {
     const requestObj = {
       method: 'post',
       url: `/calendar/app/${app_id}/filter`,
       data: attributes,
     };
-    return this._httpRequest<CalendarType>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
-   * @see https://developers.podio.com/doc/calendar/get-app-calendar-22460
    * Returns the items and tasks that are related to the given app.
-   * @param {number}app_id
-   * @param {AppCalendarAttributes}attributes
+   * @param app_id
+   * @param attributes
    * @returns
    */
-  getAppCalendar(app_id: number, attributes: AppCalendarAttributes): Promise<HttpResponse<CalendarType>> {
+  getAppCalendar(app_id: Number, attributes: AppCalendarAttributes) {
     const requestObj = {
       method: 'get',
       url: `/calendar/app/${app_id}/`,
       params: attributes,
     };
-    return this._httpRequest<CalendarType>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -59,7 +54,7 @@ export default class Calendar extends Api {
    * @param token
    * @returns
    */
-  getAppCalendarAsICal(app_id: number, user_id: number, token: number) {
+  getAppCalendarAsICal(app_id: Number, user_id: Number, token: Number) {
     const requestObj = {
       method: 'get',
       url: `/calendar/app/${app_id}/ics/${user_id}/${token}/`,
@@ -68,49 +63,46 @@ export default class Calendar extends Api {
   }
 
   /**
-   * @see https://developers.podio.com/doc/calendar/get-calendar-summary-1609256
    * Returns the calendar summary for the active user
-   * @param {SummaryAttributes} attributes
+   * @param attributes
    * @returns
    */
-  getSummary(attributes: SummaryAttributes): Promise<HttpResponse<Summary>> {
+  getSummary(attributes: SummaryAttributes) {
     const requestObj = {
       method: 'get',
       url: `/calendar/summary`,
       params: attributes,
     };
-    return this._httpRequest<Summary>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
-   * @see https://developers.podio.com/doc/calendar/get-calendar-summary-for-personal-1657903
    * Returns the calendar summary for personal tasks and personal spaces and sub-orgs.
-   * @param {SummaryAttributes}attributes
+   * @param attributes
    * @returns
    */
-  getSummaryPersonal(attributes: SummaryAttributes): Promise<HttpResponse<Summary>> {
+  getSummaryPersonal(attributes: SummaryAttributes) {
     const requestObj = {
       method: 'get',
       url: `/calendar/personal/summary`,
       params: attributes,
     };
-    return this._httpRequest<Summary>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
-   * @see https://developers.podio.com/doc/calendar/get-calendar-summary-for-space-1609328
    * Returns the calendar summary for the given space for the active user
-   * @param {number}space_id
-   * @param {SummaryAttributes}attributes
+   * @param space_id
+   * @param attributes
    * @returns
    */
-  getSummaryForSpace(space_id: number, attributes: SummaryAttributes): Promise<HttpResponse<Summary>> {
+  getSummaryForSpace(space_id: Number, attributes: SummaryAttributes) {
     const requestObj = {
       method: 'get',
       url: `/calendar/space/${space_id}/summary`,
       params: attributes,
     };
-    return this._httpRequest<Summary>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -120,7 +112,7 @@ export default class Calendar extends Api {
    * @param ref_id
    * @returns
    */
-  getExportByRef(linked_account_id: number, ref_type: 'app' | 'space', ref_id: number) {
+  getExportByRef(linked_account_id: Number, ref_type: 'app' | 'space', ref_id: Number) {
     const requestObj = {
       method: 'get',
       url: `/calendar/export/linked_account/${linked_account_id}/${ref_type}/${ref_id}`,
@@ -134,7 +126,7 @@ export default class Calendar extends Api {
    * @param ref_id
    * @returns
    */
-  getExportsByRef(ref_type: 'app' | 'space', ref_id: number) {
+  getExportsByRef(ref_type: 'app' | 'space', ref_id: Number) {
     const requestObj = {
       method: 'get',
       url: `/calendar/export/${ref_type}/${ref_id}/`,
@@ -143,19 +135,18 @@ export default class Calendar extends Api {
   }
 
   /**
-   * @see https://developers.podio.com/doc/calendar/get-global-calendar-22458
    * Returns all items that the user have access to and all tasks that are assigned to the user.
    * The items and tasks can be filtered by a list of space ids, but tasks without a reference will always be returned.
-   * @param {GlobalCalendarAttributes}attributes
+   * @param attributes
    * @returns
    */
-  getAll(attributes: GlobalCalendarAttributes): Promise<HttpResponse<CalendarType[]>> {
+  getAll(attributes: GlobalCalendarAttributes) {
     const requestObj = {
       method: 'get',
       url: `/calendar/`,
       params: attributes,
     };
-    return this._httpRequest<CalendarType[]>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -164,7 +155,7 @@ export default class Calendar extends Api {
    * @param token
    * @returns
    */
-  iCall(user_id: number, token: any) {
+  iCall(user_id: Number, token: any) {
     const requestObj = {
       method: 'get',
       url: `/calendar/ics/${user_id}/${token}/`,
@@ -177,7 +168,7 @@ export default class Calendar extends Api {
    * @param linked_account_id
    * @returns
    */
-  getGlobalExport(linked_account_id: number) {
+  getGlobalExport(linked_account_id: Number) {
     const requestObj = {
       method: 'get',
       url: `/calendar/export/linked_account/${linked_account_id}`,
@@ -203,7 +194,7 @@ export default class Calendar extends Api {
    * @param field_id
    * @returns
    */
-  getItemFieldAsICal(item_id: number, field_id: number) {
+  getItemFieldAsICal(item_id: Number, field_id: Number) {
     const requestObj = {
       method: 'get',
       url: `/calendar/item/${item_id}/field/${field_id}/ics/`,
@@ -216,7 +207,7 @@ export default class Calendar extends Api {
    * @param linked_account_id
    * @returns
    */
-  getLinkedAccountCalendar(linked_account_id: number, attributes: LinkedAccountCalendarAttributes) {
+  getLinkedAccountCalendar(linked_account_id: Number, attributes: LinkedAccountCalendarAttributes) {
     const requestObj = {
       method: 'get',
       url: `/calendar/linked_account/${linked_account_id}/`,
@@ -226,20 +217,19 @@ export default class Calendar extends Api {
   }
 
   /**
-   * @see https://developers.podio.com/doc/calendar/get-space-calendar-22459
    * Returns all items and tasks that the user have access to in the given space.
    * Tasks with reference to other spaces are not returned or tasks with no reference.
-   * @param {number}space_id
-   * @param {SpaceCalendarAttributes} attributes
+   * @param space_id
+   * @param attributes
    * @returns
    */
-  getSpaceCalendar(space_id: number, attributes: SpaceCalendarAttributes): Promise<HttpResponse<CalendarType[]>> {
+  getSpaceCalendar(space_id: Number, attributes: SpaceCalendarAttributes) {
     const requestObj = {
       method: 'get',
       url: `/calendar/space/${space_id}/`,
       params: attributes,
     };
-    return this._httpRequest<CalendarType[]>(requestObj);
+    return this._httpRequest(requestObj);
   }
 
   /**
@@ -249,7 +239,7 @@ export default class Calendar extends Api {
    * @param token
    * @returns
    */
-  getSpaceCalendarAsICal(space_id: number, user_id: number, token: any) {
+  getSpaceCalendarAsICal(space_id: Number, user_id: Number, token: any) {
     const requestObj = {
       method: 'get',
       url: `/calendar/space/${space_id}/ics/${user_id}/${token}/`,
@@ -262,7 +252,7 @@ export default class Calendar extends Api {
    * @param task_id
    * @returns
    */
-  getTaskCalendarAsICal(task_id: number) {
+  getTaskCalendarAsICal(task_id: Number) {
     const requestObj = {
       method: 'get',
       url: `/calendar/task/${task_id}/ics/`,
@@ -276,7 +266,7 @@ export default class Calendar extends Api {
    * @param uid
    * @returns
    */
-  moveExternalCalendarEvent(linked_account_id: number, uid: number, attributes: MoveExternalCalendarEventAttributes) {
+  moveExternalCalendarEvent(linked_account_id: Number, uid: Number, attributes: MoveExternalCalendarEventAttributes) {
     const requestObj = {
       method: 'post',
       url: `/calendar/linked_account/${linked_account_id}/event/${uid}/move`,
@@ -292,7 +282,7 @@ export default class Calendar extends Api {
    * @param attributes
    * @returns
    */
-  update(uid: number, attributes: UpdateAttributes) {
+  update(uid: Number, attributes: UpdateAttributes) {
     const requestObj = {
       method: 'put',
       url: `/calendar/event/${uid}`,
@@ -309,8 +299,8 @@ export default class Calendar extends Api {
    * @returns
    */
   updateExternalCalendarEventDuration(
-    linked_account_id: number,
-    uid: number,
+    linked_account_id: Number,
+    uid: Number,
     attributes: UpdateExternalCalendarEventDurationAttributes,
   ) {
     const requestObj = {
