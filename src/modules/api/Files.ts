@@ -162,4 +162,27 @@ export default class Files extends Api {
 
     return this._httpRequest(requestObj);
   }
+
+  /**
+   * Upload a file to Podio
+   * 
+   * @param {SimpleObject} attributes Object containing filename and source (file blob/buffer)
+   * @returns {Promise<HttpResponse>}
+   */
+  create(attributes: SimpleObject): Promise<HttpResponse> {
+    const formData = new FormData();
+    formData.append("filename", attributes.filename);
+    formData.append("source", attributes.source);
+
+    const requestObj = {
+      method: 'post',
+      url: '/file/',
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    };
+
+    return this._httpRequest(requestObj);
+  }
 }
