@@ -22,3 +22,9 @@ export type File = {
   size: number;
   thumbnail_link: string;
 };
+
+export type FileUploadAttributes = {
+  filename: string;
+  source: Blob | Buffer;
+  mimeType?: string;
+}

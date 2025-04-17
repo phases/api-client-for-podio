@@ -1,7 +1,11 @@
 import { HttpResponse } from '../../types/http.type';
 import { AuthToken } from '../../types/podio.type';
 import { SimpleObject } from '../../types/basic.type';
+import { FileUploadAttributes } from '../../types/file.type';
 import Api from './Api';
+import { create } from 'domain';
+
+
 
 export default class Files extends Api {
   /**
@@ -166,13 +170,17 @@ export default class Files extends Api {
   /**
    * Upload a file to Podio
    * 
-   * @param {SimpleObject} attributes Object containing filename and source (file blob/buffer)
+   * @see https://developers.podio.com/doc/files/upload-file-1004361
+   * @param {FileUploadAttributes} attributes Object containing filename and source (file blob/buffer)
    * @returns {Promise<HttpResponse>}
    */
-  create(attributes: SimpleObject): Promise<HttpResponse> {
+  create(attributes: FileUploadAttributes): Promise<HttpResponse> {
     const formData = new FormData();
     formData.append("filename", attributes.filename);
     formData.append("source", attributes.source);
+    if (attributes.mimeType) {
+      formData.append("mimetype", attributes.mimeType);
+    }
 
     const requestObj = {
       method: 'post',
