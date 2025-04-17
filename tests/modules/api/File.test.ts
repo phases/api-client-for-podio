@@ -280,4 +280,52 @@ describe('Files mock test', () => {
       expect(requestData.data).toBe(attribute);
     });
   });
+
+  describe('create() Assertions', () => {
+    test('Request data Assertions', () => {
+      const filename = 'test.txt';
+      const sourceBuffer = Buffer.from('test content');
+      const source = new Blob([sourceBuffer]);
+      const mimeType = 'text/plain';
+
+      const createFileUrl = '/file/';
+      const uploadAttributes = {
+        filename,
+        source,
+        mimeType
+      };
+
+      file.create(uploadAttributes);
+
+      let requestData: any = spy.mock.calls[0][0];
+
+      expect(spy).toHaveBeenCalled();
+      expect(requestData.method).toBe('post');
+      expect(requestData.url).toBe(createFileUrl);
+      expect(requestData.headers['Content-Type']).toBe('multipart/form-data');
+      expect(requestData.data).toBeInstanceOf(FormData);
+    });
+
+    test('Request data Assertions without mimeType', () => {
+      const filename = 'test.txt';
+      const sourceBuffer = Buffer.from('test content');
+      const source = new Blob([sourceBuffer]);
+
+      const createFileUrl = '/file/';
+      const uploadAttributes = {
+        filename,
+        source
+      };
+
+      file.create(uploadAttributes);
+
+      let requestData: any = spy.mock.calls[0][0];
+
+      expect(spy).toHaveBeenCalled();
+      expect(requestData.method).toBe('post');
+      expect(requestData.url).toBe(createFileUrl);
+      expect(requestData.headers['Content-Type']).toBe('multipart/form-data');
+      expect(requestData.data).toBeInstanceOf(FormData);
+    });
+  });
 });
