@@ -25,6 +25,7 @@ import Form from './Form';
 import Friend from './Friend';
 import Grant from './Grant';
 import Importer from './Importer';
+import Search from './Search';
 
 export default {
   request: (props: AuthToken) => new Request(props),
@@ -53,4 +54,5 @@ export default {
   space: (props: AuthToken) => new Space(props),
   user: (props: AuthToken) => new User(props),
   organization: (props: AuthToken) => new Organization(props),
+  search: (props: AuthToken) => new Search(props),
 };
